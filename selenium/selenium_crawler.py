@@ -179,21 +179,4 @@ def extract_tweets(page_source):
  
     return tweets
 
-if __name__ =="__main__":
-    statr_time= time.time()
-    keyword = ['$MSFT']
-    for key in keyword:
-        chromedriver_path = os.getcwd()+'/chromedriver'
-        driver =init_driver(chromedriver_path)
-        username = ""
-        password = ""
-        login_twitter(driver, username, password)
-        
-        page_source = search_twitter(driver,"$"+key)
-        tweets = extract_tweets(page_source)
-        
-        with open(key + '.json', 'w') as file:
-            file.write(json.dumps(tweets)) 
-        print(key+" is done!"+"\t --- %s seconds --- " %(time.time()-statr_time))
-        driver.quit()
 
